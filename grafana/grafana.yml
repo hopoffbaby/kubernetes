@@ -1,0 +1,37 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grafanadep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grafanadep
+  template:
+    metadata:
+      labels:
+        app: grafanadep
+    spec:
+      containers:
+      - image: grafana/grafana:latest
+        imagePullPolicy: IfNotPresent
+        name: grafana
+        ports:
+          - containerPort: 3000
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: grafanadep
+spec:
+  ports:
+  - nodePort: 30080
+    port: 3000
+    protocol: TCP
+    #targetPort: 3000
+  selector:
+    app: grafanadep
+  type: NodePort
+

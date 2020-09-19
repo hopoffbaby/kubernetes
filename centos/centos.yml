@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: centosdep
+  name: centosdep
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: centosdep
+  template:
+    metadata:
+      labels:
+        app: centosdep
+    spec:
+      containers:
+      - command:
+        - sleep
+        - "300"
+        image: centos:centos8
+        imagePullPolicy: IfNotPresent
+        name: centos
+      restartPolicy: Always
