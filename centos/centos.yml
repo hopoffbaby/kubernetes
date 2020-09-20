@@ -22,4 +22,11 @@ spec:
         image: centos:centos8
         imagePullPolicy: IfNotPresent
         name: centos
+        volumeMounts:
+          - mountPath: /mnt
+            name: pvc-storage
       restartPolicy: Always
+      volumes:
+        - name: pvc-storage
+          persistentVolumeClaim: 
+            claimName: pvc-volume

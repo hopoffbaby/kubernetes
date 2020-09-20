@@ -28,8 +28,9 @@ spec:
             cpu: "0.5"
         volumeMounts:
           - mountPath: /var/lib/grafana
-            name: cache-volume-grafana
+            name: pvc-storage
       volumes:
-        - name: cache-volume-grafana
-          emptyDir: {}
+        - name: pvc-storage
+          persistentVolumeClaim: 
+            claimName: pvc-volume
       restartPolicy: Always
