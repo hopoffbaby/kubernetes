@@ -23,7 +23,7 @@ spec:
           requests:
             memory: "250Mi"
             cpu: "0.25"
-          requests:
+          limits:
             memory: "500Mi"
             cpu: "0.5"
         volumeMounts:
