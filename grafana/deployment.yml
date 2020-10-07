@@ -27,7 +27,7 @@ spec:
             memory: "250Mi"
             cpu: "0.25"
           limits:
-            memory: "500Mi"
+            memory: "300Mi"
             cpu: "0.5"
         volumeMounts:
           - mountPath: /var/lib/grafana
