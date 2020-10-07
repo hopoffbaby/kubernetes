@@ -1,0 +1,41 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kibanadep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kibanadep
+  template:
+    metadata:
+      labels:
+        app: kibanadep
+    spec:
+      containers:
+      - image: kibana:7.9.2
+        imagePullPolicy: IfNotPresent
+        name: kibana
+        ports:
+          - containerPort: 5601
+        env:
+        - name: ELASTICSEARCH_HOSTS
+          value: http://esdep:9200
+        - name: SERVER_BASEPATH
+          value: /kibana
+        # resources:
+        #   requests:
+        #     memory: "256Mi"
+        #     cpu: "0.5"
+        #   limits:
+        #     memory: "2Gi"
+        #     cpu: "1"
+      #   volumeMounts:
+      #     - mountPath: /var/lib/grafana
+      #       name: pvc-storage
+      # volumes:
+      #   - name: pvc-storage
+      #     persistentVolumeClaim: 
+      #       claimName: pvc-volume
+      restartPolicy: Always
