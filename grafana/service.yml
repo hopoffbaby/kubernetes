@@ -4,10 +4,10 @@ metadata:
   name: grafanadep
 spec:
   ports:
-  - nodePort: 30080
-    port: 3000
+  #- nodePort: 30080
+  - port: 3000
     protocol: TCP
     #targetPort: 3000
   selector:
     app: grafanadep
-  type: NodePort
+  #type: NodePort
