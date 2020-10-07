@@ -22,3 +22,10 @@ spec:
             name: grafanadep
             port:
               number: 3000
+      - path: /kibana(/|$)(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: kibanadep
+            port:
+              number: 5601
