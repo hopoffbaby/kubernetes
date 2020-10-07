@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: esdep
+spec:
+  ports:
+  - nodePort: 30920
+    port: 9200
+    protocol: TCP
+  selector:
+    app: esdep
+  type: NodePort
