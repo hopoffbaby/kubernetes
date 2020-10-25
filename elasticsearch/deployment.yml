@@ -27,11 +27,11 @@ spec:
           value: -Xms256m -Xmx256m
         resources:
           requests:
-            memory: "256Mi"
-            cpu: "0.5"
+            memory: "512Mi"
+            cpu: "100m"
           limits:
-            memory: "500Mi"
-            cpu: "1"
+            memory: "1024Mi"
+            cpu: "1000m"
       #   volumeMounts:
       #     - mountPath: /var/lib/grafana
       #       name: pvc-storage

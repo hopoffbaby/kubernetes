@@ -24,11 +24,11 @@ spec:
           value: "%(protocol)s://0.0.0.0:%(http_port)s/grafana/"
         resources:
           requests:
-            memory: "250Mi"
-            cpu: "0.25"
+            memory: "64Mi"
+            cpu: "5m"
           limits:
-            memory: "300Mi"
-            cpu: "0.5"
+            memory: "128Mi"
+            cpu: "100m"
         volumeMounts:
           - mountPath: /var/lib/grafana
             name: pvc-storage

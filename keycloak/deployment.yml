@@ -30,13 +30,13 @@ spec:
           httpGet:
             path: /auth/realms/master
             port: 8080
-        # resources:
-        #   requests:
-        #     memory: "250Mi"
-        #     cpu: "0.25"
-        #   limits:
-        #     memory: "300Mi"
-        #     cpu: "0.5"
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "20m"
+          limits:
+            memory: "1024Mi"
+            cpu: "500m"
         # volumeMounts:
         #   - mountPath: /var/lib/grafana
         #     name: pvc-storage
