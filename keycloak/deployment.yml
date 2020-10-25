@@ -1,0 +1,47 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: keycloakdep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: keycloakdep
+  template:
+    metadata:
+      labels:
+        app: keycloakdep
+    spec:
+      containers:
+      - image: jboss/keycloak:latest
+        imagePullPolicy: IfNotPresent
+        name: keycloak
+        ports:
+          - containerPort: 8080
+        env:
+        - name: KEYCLOAK_USER
+          value: "admin"
+        - name: KEYCLOAK_PASSWORD
+          value: "admin"
+        - name: PROXY_ADDRESS_FORWARDING
+          value: "true"
+        readinessProbe:
+          httpGet:
+            path: /auth/realms/master
+            port: 8080
+        # resources:
+        #   requests:
+        #     memory: "250Mi"
+        #     cpu: "0.25"
+        #   limits:
+        #     memory: "300Mi"
+        #     cpu: "0.5"
+        # volumeMounts:
+        #   - mountPath: /var/lib/grafana
+        #     name: pvc-storage
+      # volumes:
+      #   - name: pvc-storage
+      #     persistentVolumeClaim: 
+      #       claimName: pvc-volume
+      restartPolicy: Always

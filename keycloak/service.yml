@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: keycloakdep
+spec:
+  ports:
+  - nodePort: 30080
+    port: 8080
+    protocol: TCP
+    #targetPort: 3000
+  selector:
+    app: keycloakdep
+  type: NodePort
