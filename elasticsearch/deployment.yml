@@ -32,11 +32,15 @@ spec:
           limits:
             memory: "1024Mi"
             cpu: "1000m"
-      #   volumeMounts:
-      #     - mountPath: /var/lib/grafana
-      #       name: pvc-storage
-      # volumes:
-      #   - name: pvc-storage
-      #     persistentVolumeClaim: 
-      #       claimName: pvc-volume
+        volumeMounts:
+          - mountPath: /usr/share/elasticsearch/config/elasticsearch.yml
+            subPath: elasticsearch/config/elasticsearch.yml
+            name: pvc-storage
+          - mountPath: /usr/share/elasticsearch/data
+            subPath: elasticsearch/data
+            name: pvc-storage
+      volumes:
+        - name: pvc-storage
+          persistentVolumeClaim: 
+            claimName: pvc-volume
       restartPolicy: Always
