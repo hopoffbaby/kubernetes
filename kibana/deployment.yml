@@ -22,8 +22,6 @@ spec:
         env:
         - name: ELASTICSEARCH_HOSTS
           value: http://esdep:80
-        # - name: SERVER_BASEPATH
-        #   value: /kibana
         resources:
           requests:
             memory: "512Mi"
@@ -31,11 +29,4 @@ spec:
           limits:
             memory: "1Gi"
             cpu: "1000m"
-      #   volumeMounts:
-      #     - mountPath: /var/lib/grafana
-      #       name: pvc-storage
-      # volumes:
-      #   - name: pvc-storage
-      #     persistentVolumeClaim: 
-      #       claimName: pvc-volume
       restartPolicy: Always
