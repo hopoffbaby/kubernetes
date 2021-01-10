@@ -10,3 +10,4 @@ spec:
   selector:
     app: kibanadep
   type: LoadBalancer
+  loadBalancerIP: 192.168.0.12
