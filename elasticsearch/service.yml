@@ -4,9 +4,10 @@ metadata:
   name: esdep
 spec:
   ports:
-  #- nodePort: 30920
-  - port: 9200
+  - port: 9200 # external port
     protocol: TCP
+    targetPort: 9200 # port in container
+  type: LoadBalancer
   selector:
     app: esdep
   #type: NodePort

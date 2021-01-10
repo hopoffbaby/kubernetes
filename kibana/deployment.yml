@@ -22,8 +22,8 @@ spec:
         env:
         - name: ELASTICSEARCH_HOSTS
           value: http://esdep:9200
-        - name: SERVER_BASEPATH
-          value: /kibana
+        # - name: SERVER_BASEPATH
+        #   value: /kibana
         resources:
           requests:
             memory: "512Mi"

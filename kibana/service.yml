@@ -4,9 +4,9 @@ metadata:
   name: kibanadep
 spec:
   ports:
-  #- nodePort: 30920
   - port: 5601
     protocol: TCP
+    targetPort: 5601
   selector:
     app: kibanadep
-  #type: NodePort
+  type: LoadBalancer
