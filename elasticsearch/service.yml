@@ -4,7 +4,7 @@ metadata:
   name: esdep
 spec:
   ports:
-  - port: 9200 # external port
+  - port: 80 # external port
     protocol: TCP
     targetPort: 9200 # port in container
   type: LoadBalancer

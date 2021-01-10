@@ -4,9 +4,9 @@ metadata:
   name: kibanadep
 spec:
   ports:
-  - port: 5601
+  - port: 80 #port to export outwards
     protocol: TCP
-    targetPort: 5601
+    targetPort: 5601 #port to target on pod
   selector:
     app: kibanadep
   type: LoadBalancer

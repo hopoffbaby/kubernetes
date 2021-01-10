@@ -21,7 +21,7 @@ spec:
           - containerPort: 5601
         env:
         - name: ELASTICSEARCH_HOSTS
-          value: http://esdep:9200
+          value: http://esdep:80
         # - name: SERVER_BASEPATH
         #   value: /kibana
         resources:
