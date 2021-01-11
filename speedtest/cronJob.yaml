@@ -1,0 +1,22 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: speedcron
+spec:
+  concurrencyPolicy: Forbid
+  schedule: "0 */3 * * *"
+  jobTemplate:
+    spec:
+      activeDeadlineSeconds: 300
+      completions: 1
+      template:
+        spec:
+          containers:
+          - image: local/speedtest:latest
+            name: speedtest
+            imagePullPolicy: Never
+            resources:
+              requests:
+                memory: "100Mi"
+                cpu: "100m"
+          restartPolicy: Never
