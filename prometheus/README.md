@@ -1,0 +1,3 @@
+Ensure cadvisor is deployed to the cluster
+
+Install the metrics stack from the lens IDE. This will install K8S for you. You can download the manifests from the lens github, but they are templates...
