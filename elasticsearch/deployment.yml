@@ -27,10 +27,10 @@ spec:
           value: -Xms256m -Xmx256m
         resources:
           requests:
-            memory: "600Mi"
+            memory: "650Mi"
             cpu: "100m"
           limits:
-            memory: "1024Mi"
+            memory: "650Mi"
             cpu: "1000m"
         volumeMounts:
           - mountPath: /usr/share/elasticsearch/config/elasticsearch.yml

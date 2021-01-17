@@ -18,7 +18,7 @@ spec:
       containers:
       - command:
         - sleep
-        - "300"
+        - "300000"
         image: centos:centos8
         imagePullPolicy: IfNotPresent
         name: centos
