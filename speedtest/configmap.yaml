@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: speedcron
+data:
+  speed.sh: |
+    #!/bin/sh
+    apk add curl
+    cd /tmp
+    curl -k -L https://bintray.com/ookla/download/download_file?file_path=ookla-speedtest-1.0.0-x86_64-linux.tgz -o /tmp/ookla-speedtest-1.0.0-x86_64-linux.tgz
+    tar -xzvf /tmp/ookla-speedtest-1.0.0-x86_64-linux.tgz    
+    curl -v -XPOST -H "Content-Type: application/json" elasticsearch.lan:80/speed/_doc -d "$(/tmp/speedtest -f json)"
+
+  speedtest-cli.json: |
+    {
+        "Settings": {
+            "LicenseAccepted": "604ec27f828456331ebf441826292c49276bd3c1bee1a2f65a6452f505c4061c",
+            "GDPRTimeStamp": 1610393525
+        }
+    }
