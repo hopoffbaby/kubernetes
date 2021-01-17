@@ -12,11 +12,30 @@ spec:
       template:
         spec:
           containers:
-          - image: local/speedtest:latest
+          - image: alpine:3.13.0
             name: speedtest
-            imagePullPolicy: Never
+            command: ["/tmp/script/speed.sh"]
             resources:
               requests:
                 memory: "100Mi"
                 cpu: "100m"
+            volumeMounts:
+            - name: script
+              mountPath: /tmp/script/
+            - name: gdpr
+              mountPath: /root/.config/ookla/
           restartPolicy: Never
+          volumes:
+            - name: script
+              configMap:
+                name: speedcron
+                defaultMode: 0777
+                items:
+                - key: speed.sh
+                  path: speed.sh
+            - name: gdpr
+              configMap:
+                name: speedcron
+                items:
+                - key: speedtest-cli.json
+                  path: speedtest-cli.json
