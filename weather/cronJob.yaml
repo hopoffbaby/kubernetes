@@ -1,0 +1,44 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: weathercron
+spec:
+  concurrencyPolicy: Forbid
+  schedule: "0 */3 * * *"
+  jobTemplate:
+    spec:
+      activeDeadlineSeconds: 300
+      completions: 1
+      template:
+        spec:
+          containers:
+          - image: alpine:3.13.0
+            name: weather
+            command: ["/tmp/script/weather.sh"]
+            resources:
+              requests:
+                memory: "100Mi"
+                cpu: "100m"
+            env:
+              - name: APIKEY
+                valueFrom:
+                  configMapKeyRef:
+                    name: weathercron
+                    key: apikey
+              - name: LOCATIONID
+                valueFrom:
+                  configMapKeyRef:
+                    name: weathercron
+                    key: locationID
+            volumeMounts:
+            - name: script
+              mountPath: /tmp/script/
+          restartPolicy: Never
+          volumes:
+            - name: script
+              configMap:
+                name: weathercron
+                defaultMode: 0777
+                items:
+                - key: weather.sh
+                  path: weather.sh
