@@ -8,9 +8,9 @@ data:
     apk add curl
     apk add jq
     set
-    curl -X GET "http://dataservice.accuweather.com/currentconditions/v1/${LOCATIONID}?apikey=${APIKEY}" | jq ".[] += {\"timestamp\":\"$(date -R)\"}" | jq .[] > /tmp/weather
-
-    curl -XPOST -H "Content-Type: application/json" elasticsearch.lan/weather/_doc -d "$(cat /tmp/weather)"
+    curl -X GET "http://dataservice.accuweather.com/currentconditions/v1/${LOCATIONID}?apikey=${APIKEY}" | jq ".[] += {\"timestamp\":\"$(date -Iseconds)\"}" | jq .[] > /tmp/weather
+    
+    curl -XPOST -H "Content-Type: application/json" elasticsearch.lan/weather2/_doc -d "$(cat /tmp/weather)"
 
   apikey: "xxx"
   locationID: "325346"
