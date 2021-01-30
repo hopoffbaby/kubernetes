@@ -1,0 +1,40 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: homeass
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: homeass
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: homeass
+    spec:
+      containers:
+      - image: homeassistant/home-assistant:2021.1.5
+        imagePullPolicy: IfNotPresent
+        name: home-assistant
+        ports:
+        - containerPort: 8123
+          protocol: TCP
+        resources: 
+          requests:
+            memory: 150Mi
+          limits:
+            memory: 300Mi
+        volumeMounts:
+          - mountPath: /config
+            subPath: homeassistant
+            name: pvc-storage
+      hostNetwork: true
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 2
+      volumes:
+        - name: pvc-storage
+          persistentVolumeClaim: 
+            claimName: pvc-volume
