@@ -14,7 +14,7 @@ spec:
         app: grafanadep
     spec:
       containers:
-      - image: grafana/grafana:latest
+      - image: grafana/grafana:7.4.0-beta1
         imagePullPolicy: IfNotPresent
         name: grafana
         ports:
