@@ -9,7 +9,7 @@ data:
     cd /tmp
     curl -k -L https://bintray.com/ookla/download/download_file?file_path=ookla-speedtest-1.0.0-x86_64-linux.tgz -o /tmp/ookla-speedtest-1.0.0-x86_64-linux.tgz
     tar -xzvf /tmp/ookla-speedtest-1.0.0-x86_64-linux.tgz    
-    curl -v -XPOST -H "Content-Type: application/json" elasticsearch.lan:80/speed/_doc -d "$(/tmp/speedtest -f json)"
+    curl -v -XPOST -H "Content-Type: application/json" elasticsearch.lan:80/speed/_doc -d "$(/tmp/speedtest -s 3697 -f json)"
 
   speedtest-cli.json: |
     {
