@@ -14,7 +14,7 @@ spec:
         app: kibanadep
     spec:
       containers:
-      - image: kibana:7.9.2
+      - image: kibana:7.10.1
         imagePullPolicy: IfNotPresent
         name: kibana
         ports:
